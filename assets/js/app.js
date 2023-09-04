@@ -30,27 +30,32 @@ document.querySelector("#create_act").addEventListener('submit', (event) => {
 
     infoArr.push(infoObj);
     console.log(infoArr);
-
+    let userData = localStorage.setItem("users", JSON.stringify(infoArr));
 });
+
+
+    let jsonData = localStorage.getItem("users");
+    let objData = JSON.parse(jsonData);
+    // console.log(jsonData);
 
 document.querySelector("#loginacc").addEventListener('submit', (event) => {
     event.preventDefault();
     console.log("Account created btn click");
     let getLogEmail = document.getElementById("input-email-login").value;
     let getLogPass = document.getElementById("input-password-login").value;
-    let infoLogObj = {
-        email: getLogEmail,
-        pass: getLogPass
-    };
 
-    infoArr.find((data) => {
-        if (infoLogObj.email === data.email) {
-            console.log("Email is correct");
-            alert("Email is correct");
-            if (infoLogObj.pass === data.pass) {
-                console.log("Password is Correct");
-                alert("Password is also Correct");
-            }
+    objData.find((data) => {
+        console.log(data);
+        if (data.email !== getLogEmail) {
+            console.log("Email is  invalid...");
+            // alert("Email is invalid...");
+        }
+        else if (data.pass !== getLogPass) {
+            console.log("Password is also invalid");
+            // alert("Password is also invalid");"ewfdweqfew"
+        }
+        else{
+            alert("Loged In Successfully");
         }
     });
 
