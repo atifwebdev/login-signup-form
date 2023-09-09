@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="main" id="main">
+        <div class="sidebar">
+            <div class="side_links">
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="./index.html">SignUp or Login</a></li>
+                    <li><a onclick="logoutUser()">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <header>
+                <i class="fas fa-bars" id="menu"></i>
+                <div class="header-logo">Dashboard</div>
+            </header>
+            <div class="dash_cont">
+                <h2>Welcome to our Dashboard</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const Bar = document.getElementById("menu");
+        const main = document.getElementById("main");
+        Bar.addEventListener("click", () => {
+            return main.classList.toggle("close");
+        });
+    </script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-// JS 
+// -------- Signup/Login JS -----------------
 
 document.querySelector("#signup_btn").addEventListener('click', (event) => {
     event.preventDefault();
@@ -34,9 +34,9 @@ document.querySelector("#create_act").addEventListener('submit', (event) => {
 });
 
 
-    let jsonData = localStorage.getItem("users");
-    let objData = JSON.parse(jsonData);
-    // console.log(jsonData);
+let jsonData = localStorage.getItem("users");
+let objData = JSON.parse(jsonData);
+// console.log(jsonData);
 
 document.querySelector("#loginacc").addEventListener('submit', (event) => {
     event.preventDefault();
@@ -54,9 +54,17 @@ document.querySelector("#loginacc").addEventListener('submit', (event) => {
             console.log("Password is also invalid");
             // alert("Password is also invalid");"ewfdweqfew"
         }
-        else{
+        else {
             alert("Loged In Successfully");
+            window.location.href = "./dashboard.html";
         }
     });
 
 });
+
+
+// -------- Dashboard JS -----------------
+function logoutUser() {
+    localStorage.removeItem("users");
+    window.location.href = "./index.html";
+};
