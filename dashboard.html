@@ -28,12 +28,20 @@
                 <div class="header-logo">Dashboard</div>
             </header>
             <div class="dash_cont">
-                <h2>Welcome to our Dashboard</h2>
+                <h2 id="welUser">Welcome to our Dashboard</h2>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Loged In Successfully...',
+  showConfirmButton: false,
+  timer: 1500
+})
         const Bar = document.getElementById("menu");
         const main = document.getElementById("main");
         Bar.addEventListener("click", () => {
