@@ -1,22 +1,24 @@
 // -------- Signup/Login JS -----------------
 
-document.querySelector("#signup_btn").addEventListener('click', (event) => {
+function signupFunc(event){
     event.preventDefault();
     document.getElementById("form-signup").style.display = "block";
     document.getElementById("form-login").style.display = "none";
     console.log("test");
-});
+}
 
-document.querySelector("#login_btn").addEventListener('click', (event) => {
+function loginFunc(event){
     event.preventDefault();
     document.getElementById("form-login").style.display = "block";
     document.getElementById("form-signup").style.display = "none";
     console.log("test");
-});
+}
 
 let infoArr = [];
 
-document.querySelector("#create_act").addEventListener('submit', (event) => {
+// SignUp Form JS
+
+function signupSub(event){
     event.preventDefault();
     console.log("Account created btn click");
     let getEmail = document.getElementById("input-email").value;
@@ -71,15 +73,15 @@ document.querySelector("#create_act").addEventListener('submit', (event) => {
         timer: 1500
       })
     document.getElementById("create_act").reset();
-});
+}
 
+// Login Form JS
+var loginArr = [];
 
-let jsonData = localStorage.getItem("users");
-let objData = JSON.parse(jsonData);
-// console.log(jsonData);
-
-document.querySelector("#loginacc").addEventListener('submit', (event) => {
+function loginSub(event){
     event.preventDefault();
+    let jsonData = localStorage.getItem("users");
+let objData = JSON.parse(jsonData);
     console.log("Account created btn click");
     let getLogEmail = document.getElementById("input-email-login").value;
     let getLogPass = document.getElementById("input-password-login").value;
@@ -121,6 +123,17 @@ document.querySelector("#loginacc").addEventListener('submit', (event) => {
             console.log("Email is ", data.email);
             console.log("Email is ", getLogEmail);
             if (getLogPass === data.pass) {
+
+                let loginInfoObj = {
+                    email: getLogEmail,
+                    pass: getLogPass
+                };
+            
+                loginArr.push(loginInfoObj);
+                console.log(loginArr);
+            
+                localStorage.setItem("login_user", JSON.stringify(loginArr));
+
                     console.log("Password is ", data.pass);
                     window.location.href = "./dashboard.html";
                     document.getElementById("loginacc").reset();
@@ -145,11 +158,62 @@ document.querySelector("#loginacc").addEventListener('submit', (event) => {
             })
         }
     });
-});
+}
 
 
 // -------- Dashboard JS -----------------
 function logoutUser() {
-    localStorage.removeItem("users");
+    localStorage.removeItem("login_user");
+    // let jsonData = localStorage.getItem("users");
+    // let objData = JSON.parse(jsonData);
+    
+    // var index = objData.findIndex(({email}) => email == 'test@test.com');
+    // var newData = objData.splice(index, 1);
+    // console.log(objData);
+    // localStorage.setItem("users", JSON.stringify(objData));
+
     window.location.href = "./index.html";
 };
+
+var jsonLoginData = localStorage.getItem("login_user");
+var getLoginData = JSON.parse(jsonLoginData);
+var jsonAllData = localStorage.getItem("users");
+var getAllData = JSON.parse(jsonAllData);
+console.log(getLoginData[0].email);
+
+getAllData.find((data) => {
+    // console.log(data);
+
+    if (getLoginData[0].email == data.email) {
+                Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Loged In Successfully...',
+  showConfirmButton: false,
+  timer: 1500
+})
+document.getElementById("welUser").innerHTML = "Welcome "+data.name+" to our Dashboard";
+    }
+
+});
+
+let loginTodoArr = [];
+function todoSub(event){
+    event.preventDefault();
+
+    let getItem = document.getElementById("todoInp").value;
+
+    let addTodoObj = {
+        todoItem: getItem,
+    };
+
+    loginTodoArr.push(addTodoObj);
+    console.log(loginTodoArr);
+
+    localStorage.setItem("login_user_todo", JSON.stringify(loginTodoArr));
+    document.getElementById("todoForm").reset();
+}
+
+var jsonAllTodo = localStorage.getItem("login_user_todo");
+var getAllTodo = JSON.parse(jsonAllTodo);
+console.log(getAllTodo);

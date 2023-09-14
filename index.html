@@ -26,7 +26,7 @@
                     <div class="section-login-2">
                         <div class="section-login-2-main">
                             <h1 class="section-login-2-title">Login</h1>
-                            <form id="loginacc" class="section-login-2-form">
+                            <form id="loginacc" class="section-login-2-form" onsubmit="loginSub(event)">
                                 <div class="login-form-1">
                                     <label for="input-email">Email</label>
                                     <input type="text" id="input-email-login" placeholder="john@example.com" required>
@@ -39,7 +39,7 @@
                                     <button type="submit">Login</button>
                                 </div>
                                 <div class="login-form-5">
-                                    <p>Don't have an account? <span id="signup_btn">Sign up here</span></p>
+                                    <p>Don't have an account? <span id="signup_btn" onclick="signupFunc(event)">Sign up here</span></p>
                                 </div>
                             </form>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="section-login-2">
                         <div class="section-login-2-main">
                             <h1 class="section-login-2-title">Signup</h1>
-                            <form id="create_act" class="section-login-2-form signup_form">
+                            <form id="create_act" class="section-login-2-form signup_form" onsubmit="signupSub(event)">
                                 <div class="login-form-1">
                                     <label for="input-email">Email</label>
                                     <input type="text" id="input-email" placeholder="john@example.com" required>
@@ -84,7 +84,7 @@
                                     <button type="submit" data-swal-toast-template="#my-template">Create an Account</button>
                                 </div>
                                 <div class="login-form-5">
-                                    <p>Already have an account? <span id="login_btn">Login here</span></p>
+                                    <p>Already have an account? <span id="login_btn" onclick="loginFunc(event)">Login here</span></p>
                                 </div>
                             </form>
                         </div>
