@@ -253,7 +253,7 @@ main section.section-login .section-main .section-login-2 .section-login-2-main 
 }
 
 .sidebar {
-    height: 100vh;
+    /* height: 100vh; */
     width: 200px;
     background: #36A9E2;
     transition: all 0.5s ease-in-out;
@@ -319,4 +319,165 @@ header i.fa-bars {
 .dash_cont h2 {
     text-align: center;
     margin-top: 40px;
+}
+
+/* Todo App Styling */
+
+/* Basic Style */
+.todoApp .container {
+    color: #333;
+	font-family: Lato, sans-serif;
+	display: block;
+	width: 400px;
+	margin: 10px auto 100px;
+	background-color:#fff;
+	padding:0px 10px 10px 10px;
+	border-radius:10px
+}
+
+.todoApp h2 {
+	text-align:center;
+	padding-top:10px;
+	margin-bottom:0px;
+}
+
+.todoApp ul {
+	margin: 0;
+	padding: 0;
+}
+
+.todoApp li * {
+	float: left;
+}
+
+.todoApp li,
+.todoApp h3 {
+	clear: both;
+	list-style: none;
+}
+
+.todoApp input,
+.todoApp button {
+	outline: none;
+}
+
+.todoApp button {
+	background: none;
+	border: 0px;
+	color: #888;
+	font-size: 15px;
+	width: 60px;
+	margin: 10px 0 0;
+	font-family: Lato, sans-serif;
+	cursor: pointer;
+}
+
+.todoApp button:hover {
+	color: #333;
+}
+
+.todoApp form input#todoInp {
+    height: 30px;
+    margin: 1rem;
+}
+
+
+/* Heading */
+
+.todoApp h3,
+.todoApp label[for='new-task'] {
+	color: #333;
+	font-weight: 700;
+	font-size: 15px;
+	border-bottom: 2px solid #333;
+	padding: 20px 0 10px;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.todoApp input[type="text"] {
+	margin: 0;
+	font-size: 18px;
+	line-height: 18px;
+	height: 18px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background: #fff;
+	border-radius: 6px;
+	font-family: Lato, sans-serif;
+	color: #888;
+}
+
+.todoApp input[type="text"]:focus {
+	color: #333;
+}
+
+
+/* New Task */
+
+.todoApp label[for='new-task'] {
+	display: block;
+	margin: 0 0 20px;
+}
+
+.todoApp input#new-task {
+	float: left;
+	width: 318px;
+}
+
+.todoApp p > button:hover {
+	color: #0FC57C;
+}
+
+
+/* Task list */
+
+.todoApp li {
+	overflow: hidden;
+	padding: 20px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.todoApp li > input[type="checkbox"] {
+	margin: 0 10px;
+	position: relative;
+	top: 15px;
+}
+
+.todoApp li > label {
+	font-size: 18px;
+	line-height: 40px;
+	width: 237px;
+	padding: 0 0 0 11px;
+}
+
+.todoApp li > input[type="text"] {
+	width: 226px;
+}
+
+.todoApp li > .delete:hover {
+	color: #CF2323;
+}
+
+
+/* Completed */
+
+.todoApp #completed-tasks label {
+	text-decoration: line-through;
+	color: #888;
+}
+
+
+/* Edit Task */
+
+.todoApp ul li input[type=text] {
+	display: none;
+}
+
+.todoApp ul li.editMode input[type=text] {
+	display: block;
+}
+
+.todoApp ul li.editMode label {
+	display: none;
 }

@@ -208,12 +208,31 @@ function todoSub(event){
     };
 
     loginTodoArr.push(addTodoObj);
-    console.log(loginTodoArr);
+    // console.log(loginTodoArr);
 
     localStorage.setItem("login_user_todo", JSON.stringify(loginTodoArr));
     document.getElementById("todoForm").reset();
 }
 
-var jsonAllTodo = localStorage.getItem("login_user_todo");
-var getAllTodo = JSON.parse(jsonAllTodo);
-console.log(getAllTodo);
+
+function addTodoFunc(){
+    var jsonAllTodo = localStorage.getItem("login_user_todo");
+    var getAllTodo = JSON.parse(jsonAllTodo);
+    console.log(getAllTodo);
+    var ulItem = document.getElementById("incomplete-tasks");
+        var listItem = document.createElement("li");
+
+	var checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+	var label = document.createElement("label");
+	var deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+
+    getAllTodo.forEach(element => {
+        label.innerHTML = element.todoItem;
+        listItem.appendChild(checkBox);
+        listItem.appendChild(label);
+        listItem.appendChild(deleteButton);
+        ulItem.appendChild(listItem);
+    });
+}
