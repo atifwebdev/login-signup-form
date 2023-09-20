@@ -18,7 +18,7 @@
                 <ul>
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="./index.html">SignUp or Login</a></li>
-                    <li><a onclick="logoutUser()">Log Out</a></li>
+                    <li><a href="#" onclick="logoutUser()">Log Out</a></li>
                 </ul>
             </div>
         </div>
@@ -35,11 +35,12 @@
                         <h3>Add Item</h3>
                         <form id="todoForm" onsubmit="todoSub(event)">
                             <input type="text" id="todoInp" required>
-                            <button type="submit" onclick="addTodoFunc()">Add</button>
+                            <button type="submit">Add</button>
                         </form>
                 
                         <h3>Todo</h3>
                         <ul id="incomplete-tasks">
+                            <li id="inc_listings"></li>
                             <!-- <li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li> -->
                             <li><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping"><button class="edit">Edit</button><button class="delete">Delete</button></li>
                         </ul>

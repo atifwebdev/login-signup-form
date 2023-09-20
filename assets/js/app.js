@@ -14,9 +14,9 @@ function loginFunc(event){
     console.log("test");
 }
 
-let infoArr = [];
-
 // SignUp Form JS
+var infoArr = [];
+var userid = 5000;
 
 function signupSub(event){
     event.preventDefault();
@@ -56,7 +56,8 @@ function signupSub(event){
         return true;
     }
 
-    let infoObj = {
+    var infoObj = {
+        userId: ++userid,
         email: getEmail,
         name: getName,
         pass: getPass
@@ -64,7 +65,7 @@ function signupSub(event){
 
     infoArr.push(infoObj);
     console.log(infoArr);
-    let userData = localStorage.setItem("users", JSON.stringify(infoArr));
+    localStorage.setItem("users", JSON.stringify(infoArr));
     Swal.fire({
         position: 'center',
         icon: 'success',
@@ -125,8 +126,10 @@ let objData = JSON.parse(jsonData);
             if (getLogPass === data.pass) {
 
                 let loginInfoObj = {
-                    email: getLogEmail,
-                    pass: getLogPass
+                    userId: data.userId,
+                    name: data.name,
+                    email: data.email,
+                    pass: data.pass
                 };
             
                 loginArr.push(loginInfoObj);
@@ -216,26 +219,48 @@ function todoSub(event){
 var getAllTodo = JSON.parse(jsonAllTodo);
 console.log(getAllTodo);
 
-    var ulItem = document.getElementById("incomplete-tasks");
-        var listItem = document.createElement("li");
+    // var ulItem = document.getElementById("incomplete-tasks");
+    var listItem = document.getElementById("inc_listings");
+        // var listItem = document.createElement("li");
 
-	var checkBox = document.createElement("input");
-    checkBox.type = "checkbox";
+	// var checkBox = document.createElement("input");
+    // checkBox.type = "checkbox";
 	var label = document.createElement("label");
 	var deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
 
 
     getAllTodo.forEach(element => {
-        listItem.appendChild(checkBox);
+        label.innerHTML = element.todoItem;
         listItem.appendChild(label);
         listItem.appendChild(deleteButton);
-        label.innerHTML = element.todoItem;
-        ulItem.appendChild(listItem);
+        // ulItem.appendChild(listItem);
     });
     document.getElementById("todoForm").reset();
 }
 
+function loadFunc(){
+    var jsonAllTodo = localStorage.getItem("login_user_todo");
+    var getAllTodo = JSON.parse(jsonAllTodo);
+    console.log(getAllTodo);
+        getAllTodo.forEach(element => {
+                // var ulItem = document.getElementById("incomplete-tasks");
+        var listItem = document.getElementById("inc_listings");
+        // var listItem = document.createElement("li");
+    
+    // var checkBox = document.createElement("input");
+    // checkBox.type = "checkbox";
+    var label = document.createElement("label");
+    var deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+            label.innerHTML = element.todoItem;
+            listItem.appendChild(label);
+            listItem.appendChild(deleteButton);
+            // ulItem.appendChild(listItem);
+        });    
+}
+
+window.onload = loadFunc();
 
 
 
