@@ -200,50 +200,110 @@ document.getElementById("welUser").innerHTML = "Welcome "+data.name+" to our Das
 
 });
 
-let loginTodoArr = [];
-function todoSub(event){
-    event.preventDefault();
+// let loginTodoArr = [];
+// function todoSub(event){
+//     event.preventDefault();
 
-    let getItem = document.getElementById("todoInp").value;
+//     let getItem = document.getElementById("todoInp").value;
 
-    let addTodoObj = {
-        todoItem: getItem,
-    };
+//     let addTodoObj = {
+//         todoItem: getItem,
+//     };
 
-    loginTodoArr.push(addTodoObj);
-    // console.log(loginTodoArr);
+//     loginTodoArr.push(addTodoObj);
+//     // console.log(loginTodoArr);
 
-    localStorage.setItem("login_user_todo", JSON.stringify(loginTodoArr));
+//     localStorage.setItem("login_user_todo", JSON.stringify(loginTodoArr));
 
-    var jsonAllTodo = localStorage.getItem("login_user_todo");
-var getAllTodo = JSON.parse(jsonAllTodo);
-console.log(getAllTodo);
+//     var jsonAllTodo = localStorage.getItem("login_user_todo");
+// var getAllTodo = JSON.parse(jsonAllTodo);
+// console.log(getAllTodo);
 
-    // var ulItem = document.getElementById("incomplete-tasks");
-    var listItem = document.getElementById("inc_listings");
-        // var listItem = document.createElement("li");
+//     // var ulItem = document.getElementById("incomplete-tasks");
+//     var listItem = document.getElementById("inc_listings");
+//         // var listItem = document.createElement("li");
 
-	// var checkBox = document.createElement("input");
-    // checkBox.type = "checkbox";
-	var label = document.createElement("label");
-	var deleteButton = document.createElement("button");
-    deleteButton.innerText = "Delete";
+// 	// var checkBox = document.createElement("input");
+//     // checkBox.type = "checkbox";
+// 	var label = document.createElement("label");
+// 	var deleteButton = document.createElement("button");
+//     deleteButton.innerText = "Delete";
 
 
-    getAllTodo.forEach(element => {
-        label.innerHTML = element.todoItem;
-        listItem.appendChild(label);
-        listItem.appendChild(deleteButton);
-        // ulItem.appendChild(listItem);
-    });
-    document.getElementById("todoForm").reset();
-}
+//     getAllTodo.forEach(element => {
+//         label.innerHTML = element.todoItem;
+//         listItem.appendChild(label);
+//         listItem.appendChild(deleteButton);
+//         // ulItem.appendChild(listItem);
+//     });
+//     document.getElementById("todoForm").reset();
+// }
+
+
+const $inputField = document.getElementById("todoInp");
+const $btn = document.getElementById('btntodo');
+
+$inputField.addEventListener('keyup', (e) => {
+    // if ENTER key pressed
+    if (e.keyCode === 13) {
+      saveTodo();
+    }
+  });
+  $btn.addEventListener('click', saveTodo);
+  function saveTodo() {
+    if ($inputField.value !== '') {
+      const todo = saveToLocalStorage($inputField.value);
+    //   $container.insertAdjacentHTML('beforeend', getTodoHTMLMarkup(todo));
+    
+ // var ulItem = document.getElementById("incomplete-tasks");
+ var listItem = document.getElementById("inc_listings");
+ // var listItem = document.createElement("li");
+
+// var checkBox = document.createElement("input");
+// checkBox.type = "checkbox";
+var label = document.createElement("label");
+var deleteButton = document.createElement("button");
+deleteButton.innerText = "Delete";
+     label.innerHTML = $inputField.value;
+     listItem.appendChild(label);
+     listItem.appendChild(deleteButton);
+     // ulItem.appendChild(listItem);
+
+      $inputField.value = '';
+    }
+  }
+  function saveToLocalStorage(todoText) {
+    let todos = readFromLocalStorage();
+    
+    // empty local storage
+    if (!todos) todos = [];
+    
+    var jsonLoginData = localStorage.getItem("login_user");
+    var getLoginData = JSON.parse(jsonLoginData);
+    console.log(getLoginData);
+    const todo = { id: getLoginData[0].userId, text: todoText, completed: false };
+    todos.push(todo);
+    localStorage.setItem('userTodos', JSON.stringify(todos));
+    
+    return todo;
+  }
+
+  function readFromLocalStorage() {
+    const todos = localStorage.getItem('userTodos');
+    return !todos ? [] : JSON.parse(todos); 
+  }
 
 function loadFunc(){
-    var jsonAllTodo = localStorage.getItem("login_user_todo");
+    var jsonAllTodo = localStorage.getItem("userTodos");
     var getAllTodo = JSON.parse(jsonAllTodo);
     console.log(getAllTodo);
+
         getAllTodo.forEach(element => {
+            var jsonLoginData = localStorage.getItem("login_user");
+    var getLoginData = JSON.parse(jsonLoginData);
+    console.log(getLoginData);
+
+    if(getLoginData[0].userId === element.id){
                 // var ulItem = document.getElementById("incomplete-tasks");
         var listItem = document.getElementById("inc_listings");
         // var listItem = document.createElement("li");
@@ -253,10 +313,11 @@ function loadFunc(){
     var label = document.createElement("label");
     var deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
-            label.innerHTML = element.todoItem;
+            label.innerHTML = element.text;
             listItem.appendChild(label);
             listItem.appendChild(deleteButton);
             // ulItem.appendChild(listItem);
+        }
         });    
 }
 
